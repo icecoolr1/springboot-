@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.jluzh.test_layuimini.mapper.IOrderMapper">
+    <update id="updateOrder" parameterType="edu.jluzh.test_layuimini.bean.OrderList">
+        update orderlist set userId = #{userId} ,orderStatus = #{orderStatus},beginDate = #{beginDate},closeDate=#{closeDate}
+        ,licenseNumber = #{licenseNumber} where orderId=#{orderId}
+    </update>
+    <delete id="deleteOrder" parameterType="int">
+        delete from orderlist where orderId=#{orderId}
+    </delete>
+
+
+    <select id="findAllOrder" resultType="edu.jluzh.test_layuimini.bean.OrderList">
+        select * from orderlist
+    </select>
+    <select id="findOrderTotal" resultType="java.lang.Integer">
+        select count(*) from orderlist
+    </select>
+    <select id="findOrderByMonth" resultType="java.lang.Integer">
+        select count(closeDate) from orderlist
+        where
+        MONTH(closeDate) = #{month}
+    </select>
+    <select id="findOrderById" resultType="edu.jluzh.test_layuimini.bean.OrderList">
+        select * from orderlist where orderId = #{id}
+    </select>
+</mapper>

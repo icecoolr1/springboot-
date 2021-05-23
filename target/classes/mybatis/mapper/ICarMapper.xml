@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.jluzh.test_layuimini.mapper.ICarMapper">
+    <insert id="addCar" parameterType="car" useGeneratedKeys="true">
+        insert into car(licenseNumber,carStatus,carDescribe) values (#{licenseNumber},#{carStatus},#{carDescribe})
+    </insert>
+    <update id="updareCar" parameterType="car">
+        update car set licenseNumber=#{licenseNumber},carStatus=#{carStatus},carDescribe=#{carDescribe} where carId=#{carId}
+    </update>
+    <delete id="deleteCarList" >
+        delete from car where carId=#{carId}
+    </delete>
+    <select id="findAllCar" resultType="car">
+        select * from car
+    </select>
+    <select id="findCarByLicense" resultType="edu.jluzh.test_layuimini.bean.Car">
+        select * from car
+        where
+        licenseNumber like '%${licenseNumber}%'
+    </select>
+    <select id="getCarTotal" resultType="java.lang.Integer">
+        select  count(*) from car
+    </select>
+
+
+</mapper>

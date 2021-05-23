@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.jluzh.test_layuimini.mapper.IUserMapper">
+
+    <!--    public Account getAcct(Long id); -->
+    <select id="findAllUser" resultType="user">
+        select * from  user
+    </select>
+    <select id="searchUserByInfo" parameterType="String" resultType="user">
+        select * from user
+        where
+        userName like '%${userName}%'
+    </select>
+    <select id="findUserTotal" resultType="java.lang.Integer">
+        select count(*) from user
+    </select>
+
+    <delete id="deleteUserById" parameterType="integer">
+        delete from user where userId=#{userId}
+    </delete>
+
+    <update id="updateUser" parameterType="user">
+        update user set userName=#{userName},userAge=#{userAge},userMail=#{userMail},userSex=#{userSex},userStatus=#{userStatus},userPhone=#{userPhone} where userId=#{userId}
+    </update>
+
+
+</mapper>
