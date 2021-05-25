@@ -1,11 +1,13 @@
 package edu.jluzh.test_layuimini;
 
+import com.baidu.aip.ocr.AipOcr;
 import edu.jluzh.test_layuimini.service.IOrderService;
 import edu.jluzh.test_layuimini.service.IUserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 @SpringBootTest
@@ -14,6 +16,9 @@ class TestLayuiminiApplicationTests {
     IUserService userService;
     @Autowired
     IOrderService orderService;
+    public static final String APP_ID = "24242714";
+    public static final String API_KEY = "hdyQSqxI7NGPhmXbOZ6dPvpV";
+    public static final String SECRET_KEY = "l8VT9nPcoqK3AG3lIHyXCRQkqy8O4dWi";
 
     @Test
     public void testDeleteUser(){
@@ -39,4 +44,6 @@ class TestLayuiminiApplicationTests {
         System.out.println(orderService.findOrderByMonth(10));
         System.out.println(Arrays.toString(orderService.findOrderByMonths()));
     }
+
+
 }

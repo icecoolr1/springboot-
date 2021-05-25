@@ -24,6 +24,10 @@
         MONTH(closeDate) = #{month}
     </select>
     <select id="findOrderById" resultType="edu.jluzh.test_layuimini.bean.OrderList">
-        select * from orderlist where orderId = #{id}
+        select * from orderlist where userId = #{id}
+    </select>
+
+    <select id="findOrderByOrderId" resultType="edu.jluzh.test_layuimini.bean.OrderList">
+         select * from orderlist where orderId = #{orderId}
     </select>
 </mapper>

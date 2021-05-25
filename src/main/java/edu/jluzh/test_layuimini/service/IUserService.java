@@ -20,6 +20,9 @@ public interface IUserService {
      public void updateUser(User user);
      //条件查找用户
      PageInfo<User> searchUser(int page, int limit,String userName);
-
+     //查询用户总数
      int findUserTotal();
+     //按id查询用户
+     User findUserByid(int id);
+
 }

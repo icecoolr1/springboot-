@@ -17,4 +17,5 @@ public interface ICarService {
     void updateCar(Car car);
     void addCar(Car car);
     int findCarTotal();
+    Car findCarById(int id);
 }

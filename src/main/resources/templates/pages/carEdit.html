@@ -21,14 +21,14 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">车牌号</label>
         <div class="layui-input-block">
-            <input type="text" name="licenseNumber" lay-verify="required" lay-reqtext="车牌号不能为空" placeholder="请输入车牌号" value="" class="layui-input">
+            <input type="text" name="licenseNumber" lay-verify="required" lay-reqtext="车牌号不能为空" placeholder="请输入车牌号" th:value="${session.Car.getLicenseNumber()}" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">车辆状态</label>
         <div class="layui-input-block">
-            <input type="text" name="carStatus" placeholder="请输入车辆状态" value="" class="layui-input">
+            <input type="text" name="carStatus" placeholder="请输入车辆状态" th:value="${session.Car.getCarStatus()}" class="layui-input">
         </div>
     </div>
 
@@ -36,7 +36,7 @@
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">车辆描述</label>
         <div class="layui-input-block">
-            <textarea name="carDescribe" class="layui-textarea" placeholder="请输入车辆描述"></textarea>
+            <textarea name="carDescribe" class="layui-textarea" th:text="${session.Car.getCarDescribe()}" ></textarea>
             <tip>输入车辆品牌，型号</tip>
         </div>
     </div>

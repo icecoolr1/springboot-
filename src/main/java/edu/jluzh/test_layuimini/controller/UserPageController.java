@@ -1,5 +1,7 @@
 package edu.jluzh.test_layuimini.controller;
 
+import edu.jluzh.test_layuimini.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +18,8 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 public class UserPageController {
-
+    @Autowired
+    IUserService service;
     //跳转userlist界面
     @GetMapping("/userlist")
     public String userList(){
@@ -25,8 +28,9 @@ public class UserPageController {
 
     //跳转用户编辑界面 并将用户id存入session
     @GetMapping("/userEdit")
-    public String userEdit( Integer id, HttpSession session){
+    public String userEdit(Integer id, HttpSession session){
         session.setAttribute("userId",id);
+        session.setAttribute("User",service.findUserByid(id));
         System.out.println(id);
         return "pages/edit";
     }

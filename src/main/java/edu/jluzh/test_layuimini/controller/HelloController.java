@@ -71,6 +71,8 @@ public class HelloController {
 
         return "pages/welcome-1";
     }
+
+    //按月查询数据
     @GetMapping(value = "/getdata")
     @ResponseBody
     public int[] getData(){

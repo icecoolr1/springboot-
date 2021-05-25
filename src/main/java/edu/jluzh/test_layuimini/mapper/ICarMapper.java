@@ -14,14 +14,19 @@ import java.util.List;
  */
 @Mapper
 public interface ICarMapper {
+    //获得汽车总数
     public int getCarTotal();
+    //查询所有车辆
     public List<Car> findAllCar();
-
+    //按车牌号查询车辆
     public List<Car> findCarByLicense(String license);
-
+    //删除汽车
     public void deleteCarList(int carId);
-
+    //更新车辆信息
     public void updareCar(Car car);
-
+    //添加车辆
     public void addCar(Car car);
+
+    //通过id查询车辆
+    public Car findCarById(int id);
 }

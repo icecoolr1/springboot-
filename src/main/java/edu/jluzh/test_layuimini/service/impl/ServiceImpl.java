@@ -58,4 +58,9 @@ public class ServiceImpl implements IUserService {
     public int findUserTotal() {
        return userMapper.findUserTotal();
     }
+
+    @Override
+    public User findUserByid(int id) {
+        return userMapper.findUserByid(id);
+    }
 }

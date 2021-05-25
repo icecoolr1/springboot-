@@ -19,7 +19,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">用户名</label>
         <div class="layui-input-block">
-            <input type="text" name="userName" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="请输入用户名" value="" class="layui-input">
+            <input type="text" name="userName" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="请输入用户名" th:value="${session.User.getUserName()}" class="layui-input">
             <tip>填写自己管理账号的名称。</tip>
         </div>
     </div>
@@ -33,20 +33,20 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">手机号</label>
         <div class="layui-input-block">
-            <input type="number" name="userPhone" lay-verify="required" lay-reqtext="手机不能为空" placeholder="请输入手机" value="" class="layui-input">
+            <input type="number" name="userPhone" lay-verify="required" lay-reqtext="手机不能为空" placeholder="请输入手机" th:value="${session.User.getUserPhone()}" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">邮箱</label>
         <div class="layui-input-block">
-            <input type="email" name="userMail" placeholder="请输入邮箱" value="" class="layui-input">
+            <input type="email" name="userMail" placeholder="请输入邮箱" th:value="${session.User.getUserMail()}" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">年龄</label>
         <div class="layui-input-block">
-            <input type="number" name="userAge" placeholder="请输入年龄" value="" class="layui-input">
+            <input type="number" name="userAge" placeholder="请输入年龄" th:value="${session.User.getUserAge()}" class="layui-input">
         </div>
     </div>
 
@@ -54,7 +54,7 @@
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">当前状态</label>
         <div class="layui-input-block">
-            <textarea name="userStatus" class="layui-textarea" placeholder="请输入用户当前状态"></textarea>
+            <textarea name="userStatus" class="layui-textarea" placeholder="请输入用户当前状态" th:text="${session.User.getUserStatus()}"></textarea>
         </div>
     </div>
 

@@ -25,4 +25,6 @@ public interface IUserMapper {
     //通过用户名查询用户信息
     public List<User> searchUserByInfo(String username);
     int findUserTotal();
+    //按id查询用户
+    User findUserByid(int id);
 }

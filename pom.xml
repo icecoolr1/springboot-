@@ -82,6 +82,18 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>com.baidu.aip</groupId>
+            <artifactId>java-sdk</artifactId>
+            <version>4.15.4</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.76</version>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>
@@ -93,6 +105,8 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 

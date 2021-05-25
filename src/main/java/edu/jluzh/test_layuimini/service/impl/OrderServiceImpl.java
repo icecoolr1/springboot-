@@ -65,4 +65,9 @@ public class OrderServiceImpl implements IOrderService {
     public void uodateOrderList(OrderList order) {
         orderMapper.updateOrder(order);
     }
+
+    @Override
+    public OrderList findOrderByOrderID(int id) {
+        return  orderMapper.findOrderByOrderId(id);
+    }
 }

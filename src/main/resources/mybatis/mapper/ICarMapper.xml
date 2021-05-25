@@ -23,6 +23,11 @@
     <select id="getCarTotal" resultType="java.lang.Integer">
         select  count(*) from car
     </select>
+    <select id="findCarById" resultType="edu.jluzh.test_layuimini.bean.Car">
+        select * from car
+        where
+        carId = #{id}
+    </select>
 
 
 </mapper>

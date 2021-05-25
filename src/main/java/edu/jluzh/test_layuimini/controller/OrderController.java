@@ -28,6 +28,8 @@ public class OrderController {
     IOrderService orderService;
     UserTable userTable = new UserTable();
     UserResult result = new UserResult();
+
+    //返回订单列表
     @PostMapping("/getOrderlist")
     public UserTable getOrderList(int page,int limit,String id){
         userTable.setMsg("正常");
@@ -44,6 +46,7 @@ public class OrderController {
         return userTable;
     }
 
+    //删除订单
     @PostMapping("/delete")
     public UserResult deleteOrder(@RequestParam(value = "params[]") int[] params){
         for (int param : params) {
@@ -53,9 +56,12 @@ public class OrderController {
         result.setStatus("0");
         return result;
     }
+    //订单编辑
     @PostMapping("/orderEdit")
     public UserResult updateOrder(OrderList orderList, HttpSession session){
         Integer orderId = (Integer) session.getAttribute("orderId");
+        System.out.println(orderId);
+        System.out.println(orderList.getUserId());
         Date begindate = orderList.getBeginDate();
 
         orderList.setOrderId(orderId);

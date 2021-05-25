@@ -2,8 +2,6 @@ package edu.jluzh.test_layuimini.bean;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.xml.crypto.Data;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,16 +13,18 @@ import java.util.Date;
  * @modified By:
  */
 public class OrderList implements Serializable {
-    private Integer orderId;
-    private String userId;
-    private String licenseNumber;
-    private String orderStatus;
+    private Integer orderId;//订单id
+    private String userId;//用户id
+    private String licenseNumber;//车牌号
+    private String orderStatus;//订单状态
+    //定义日期数据格式
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date beginDate;
+    private Date beginDate;//订单开始日期
+    //定义日期数据格式
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date closeDate;
+    private Date closeDate;//订单关闭日期
 
     public OrderList() {
     }

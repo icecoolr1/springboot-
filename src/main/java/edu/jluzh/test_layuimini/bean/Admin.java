@@ -10,9 +10,9 @@ import java.io.Serializable;
  * @modified By:
  */
 public class Admin implements Serializable {
-    private String adminId;
-    private String adminName;
-    private String adminPassword;
+    private String adminId;//管理员id
+    private String adminName;//管理员名
+    private String adminPassword;//管理员密码
 
     public Admin() {
     }

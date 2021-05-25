@@ -7,7 +7,6 @@ spring:
   #   type: com.zaxxer.hikari.HikariDataSource
     druid:
       filters: stat,wall
-
       stat-view-servlet:
         enabled: true
         login-username: admin
@@ -17,9 +16,12 @@ spring:
         enabled: true
         url-pattern: /*
       aop-patterns: edu.jluzh
+  jackson:
+    time-zone: GMT+8
 mybatis:
   #config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mapper/*.xml
   type-aliases-package: edu.jluzh.test_layuimini.bean
+
 
 

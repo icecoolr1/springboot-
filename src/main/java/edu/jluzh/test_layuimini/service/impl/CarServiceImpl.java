@@ -56,4 +56,9 @@ public class CarServiceImpl implements ICarService {
     public int findCarTotal() {
         return carMapper.getCarTotal();
     }
+
+    @Override
+    public Car findCarById(int id) {
+        return carMapper.findCarById(id);
+    }
 }

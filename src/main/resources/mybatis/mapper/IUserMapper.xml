@@ -17,7 +17,6 @@
         select count(*) from user
     </select>
 
-
     <delete id="deleteUserById" parameterType="integer">
         delete from user where userId=#{userId}
     </delete>
@@ -25,6 +24,10 @@
     <update id="updateUser" parameterType="user">
         update user set userName=#{userName},userAge=#{userAge},userMail=#{userMail},userSex=#{userSex},userStatus=#{userStatus},userPhone=#{userPhone} where userId=#{userId}
     </update>
+
+    <select id="findUserByid" resultType="edu.jluzh.test_layuimini.bean.User">
+        select * from user where userId = #{id}
+    </select>
 
 
 </mapper>

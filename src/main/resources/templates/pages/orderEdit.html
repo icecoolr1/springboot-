@@ -21,14 +21,14 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">车牌号</label>
         <div class="layui-input-block">
-            <input type="text" name="licenseNumber" lay-verify="required" lay-reqtext="车牌号不能为空" placeholder="请输入车牌号" value="" class="layui-input">
+            <input type="text" name="licenseNumber" lay-verify="required" lay-reqtext="车牌号不能为空" placeholder="请输入车牌号" th:value="${session.Order.getLicenseNumber()}" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">用户id</label>
         <div class="layui-input-block">
-            <input type="text" name="userId" placeholder="请输入用户id" value="" class="layui-input">
+            <input type="text" name="userId" placeholder="请输入用户id" th:value="${session.Order.getUserId()}" class="layui-input">
         </div>
     </div>
 
@@ -36,14 +36,14 @@
 
             <label class="layui-form-label">订单开始日期:</label>
             <div class="layui-input-inline">
-                <input type="text" class="layui-input" id="test12" placeholder="dd/MM/yyyy" name="beginDate">
+                <input type="text" class="layui-input" id="test12" placeholder="yyyy-MM-dd" name="beginDate" autocomplete="off">
             </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">订单结束日期:</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input" id="test13" placeholder="dd/MM/yyyy" name="closeDate">
+            <input type="text" class="layui-input" id="test13" placeholder="yyyy-MM-dd" name="closeDate" autocomplete="off">
         </div>
     </div>
 
@@ -51,7 +51,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">订单状态</label>
         <div class="layui-input-block">
-            <input type="text" name="orderStatus" placeholder="请输入订单状态" value="" class="layui-input">
+            <input type="text" name="orderStatus" placeholder="请输入订单状态" th:value="${session.Order.getOrderStatus()}" class="layui-input">
         </div>
     </div>
 
@@ -90,15 +90,6 @@
 
         //监听提交
         form.on('submit(saveBtn)', function (data) {
-            // var index = layer.alert(JSON.stringify(data.field), {
-            //     title: '最终的提交信息'
-            // }, function () {
-            //
-            //     // 关闭弹出层
-            //     layer.close(index);
-            //
-            //     var iframeIndex = parent.layer.getFrameIndex(window.name);
-            //     parent.layer.close(iframeIndex);
             $.ajax({
                 url:'/order/orderEdit',
                 method: 'post',
