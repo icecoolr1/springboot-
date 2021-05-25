@@ -17,6 +17,7 @@
         select count(*) from user
     </select>
 
+
     <delete id="deleteUserById" parameterType="integer">
         delete from user where userId=#{userId}
     </delete>
