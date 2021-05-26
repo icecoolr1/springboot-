@@ -61,4 +61,25 @@ public class CarServiceImpl implements ICarService {
     public Car findCarById(int id) {
         return carMapper.findCarById(id);
     }
+
+    @Override
+    public PageInfo<Car> findAllCarWithImg(int page, int limit) {
+        PageHelper.startPage(page, limit);
+        List<Car> carList = carMapper.findCarByResultMap();
+        PageInfo<Car> pageInfo = new PageInfo<>(carList);
+        return pageInfo;
+    }
+
+    @Override
+    public String findLicense(int id) {
+     return  carMapper.findLicense(id);
+    }
+
+    @Override
+    public PageInfo<Car> findAllCarWithImgByLicense(int page, int limit, String license) {
+        PageHelper.startPage(page, limit);
+        List<Car> cars = carMapper.findCarByResultMapWithLicense(license);
+        PageInfo<Car> pageInfo = new PageInfo<>(cars);
+        return  pageInfo;
+    }
 }

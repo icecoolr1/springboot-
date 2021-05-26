@@ -29,4 +29,11 @@ public interface ICarMapper {
 
     //通过id查询车辆
     public Car findCarById(int id);
+
+    List<Car> findCarByResultMap();
+
+    String findLicense(int id);
+
+    List<Car> findCarByResultMapWithLicense(String license);
+
 }

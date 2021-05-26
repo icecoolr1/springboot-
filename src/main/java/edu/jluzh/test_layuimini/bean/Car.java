@@ -14,6 +14,7 @@ public class Car implements Serializable {
     private String licenseNumber;//汽牌号
     private String carStatus;//车辆状态
     private String carDescribe;//车辆描述
+    private CarImg carImg;//图片地址
 
     public Car() {
     }
@@ -23,6 +24,14 @@ public class Car implements Serializable {
         this.licenseNumber = licenseNumber;
         this.carStatus = carStatus;
         this.carDescribe = carDescribe;
+    }
+
+    public Car(Integer carId, String licenseNumber, String carStatus, String carDescribe, CarImg carImg) {
+        this.carId = carId;
+        this.licenseNumber = licenseNumber;
+        this.carStatus = carStatus;
+        this.carDescribe = carDescribe;
+        this.carImg = carImg;
     }
 
     public Integer getCarId() {
@@ -57,6 +66,14 @@ public class Car implements Serializable {
         this.carDescribe = carDescribe;
     }
 
+    public CarImg getCarImg() {
+        return carImg;
+    }
+
+    public void setCarImg(CarImg carImg) {
+        this.carImg = carImg;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
@@ -64,6 +81,7 @@ public class Car implements Serializable {
                 ", licenseNumber='" + licenseNumber + '\'' +
                 ", carStatus='" + carStatus + '\'' +
                 ", carDescribe='" + carDescribe + '\'' +
+                ", carImg=" + carImg +
                 '}';
     }
 }

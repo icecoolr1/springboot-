@@ -3,6 +3,17 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.jluzh.test_layuimini.mapper.ICarMapper">
+    <resultMap id="ICarMapper" type="edu.jluzh.test_layuimini.bean.Car">
+        <id property="carId" column="carId"></id>
+        <result property="licenseNumber" column="licenseNumber"></result>
+        <result property="carDescribe" column="carDescribe"></result>
+        <result property="carStatus" column="carStatus"></result>
+        <association property="carImg"  javaType="edu.jluzh.test_layuimini.bean.CarImg">
+            <id property="licenseNumber" column="licenseNumber" ></id>
+            <result property="imgPath" column="imgPath"></result>
+        </association>
+    </resultMap>
+
     <insert id="addCar" parameterType="car" useGeneratedKeys="true">
         insert into car(licenseNumber,carStatus,carDescribe) values (#{licenseNumber},#{carStatus},#{carDescribe})
     </insert>
@@ -27,6 +38,15 @@
         select * from car
         where
         carId = #{id}
+    </select>
+    <select id="findCarByResultMap" resultMap="ICarMapper">
+        select c.*,carimg.imgPath from  Car c,carimg where c.licenseNumber = carimg.licenseNumber
+    </select>
+    <select id="findLicense" resultType="java.lang.String">
+        select licenseNumber from car where carId=#{id}
+    </select>
+    <select id="findCarByResultMapWithLicense" resultMap="ICarMapper" parameterType="string">
+           select c.*,carimg.imgPath from Car c,carimg where c.licenseNumber = carimg.licenseNumber and c.licenseNumber like '%${licenseNumber}%'
     </select>
 
 

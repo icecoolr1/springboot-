@@ -61,6 +61,7 @@
                 [
                     {type: 'checkbox', fixed: 'left'}
                     , {field: 'carId', title: '汽车ID', width: 100, fixed: 'left', unresize: true, sort: true}
+                    , {field: 'imgPath', title: '图片', templet: '#img' ,width:100}
                     , {field: 'licenseNumber', title: '车牌号', width: 120, edit: 'text'}
                     , {field: 'carStatus', title: '车辆状态', width: 120, edit: 'text', templet: '#titleTpl'}
                     , {field: 'carDescribe', title: '车辆描述', width: 200, edit: 'text'}
@@ -71,7 +72,8 @@
             limit: 10,
             page: true,
             skin: 'line',
-            method:'post'
+            method:'post',
+            height:500,
 
         });
 
@@ -259,6 +261,10 @@
         window.location = "/carlist";
     }
 </script>
+<script type="text/html" id="img">
+    <div><img src="{{ d.carImg.imgPath }}" style="width: 30px; height: 30px" ></div>
+</script>
+
 
 </body>
 </html>

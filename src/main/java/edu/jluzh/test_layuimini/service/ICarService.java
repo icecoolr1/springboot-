@@ -18,4 +18,7 @@ public interface ICarService {
     void addCar(Car car);
     int findCarTotal();
     Car findCarById(int id);
+    PageInfo<Car> findAllCarWithImg(int page,int limit);
+    String findLicense(int id);
+    PageInfo<Car> findAllCarWithImgByLicense(int page,int limit,String license);
 }
