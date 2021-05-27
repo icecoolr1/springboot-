@@ -127,15 +127,17 @@ public class CarController {
             //保存到文件服务器
             file.transferTo(new File(pathString));
         }
-
         String number = LicensePlate.licensePlate(pathString);
         //在session中保存文件存放路径
         session.setAttribute("path",pathString);
+        //分割路径
+        String path = pathString.substring(2);
         System.out.println(pathString);
         fileUploadMessage.setData(pathString);
         fileUploadMessage.setMsg(number);
-        src.put("src",pathString);
+        src.put("file",path);
         fileUploadMessage.setData(src);
+        fileUploadMessage.setFiles(src);
         return fileUploadMessage;
     }
 }

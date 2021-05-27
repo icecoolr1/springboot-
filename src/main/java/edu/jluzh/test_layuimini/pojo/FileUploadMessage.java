@@ -11,6 +11,7 @@ public class FileUploadMessage {
     private int code;//状态码
     private String msg;//消息
     private Object data;//数据
+    private Object files;//路径
 
 
     public FileUploadMessage() {
@@ -47,12 +48,22 @@ public class FileUploadMessage {
         this.data = data;
     }
 
+    public Object getFiles() {
+        return files;
+    }
+
+    public void setFiles(Object files) {
+        this.files = files;
+    }
+
     @Override
-    public String toString() {
+    public String
+    toString() {
         return "FileUploadMessage{" +
                 "code=" + code +
                 ", msg='" + msg + '\'' +
                 ", data=" + data +
+                ", files=" + files +
                 '}';
     }
 }

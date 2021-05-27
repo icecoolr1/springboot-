@@ -136,11 +136,12 @@
             }
 
             ,done: function(res){
-                layer.msg('上传成功');
+                    layer.msg('上传成功');
+                    layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.data.file);
+                    console.log(res.data);
+                    console.log(res.number);
+                    $("#number").val(res.msg);
 
-                console.log(res.data);
-                console.log(res.number);
-                $("#number").val(res.msg);
 
             }
         });
