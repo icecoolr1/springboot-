@@ -9,8 +9,9 @@
         <result property="carDescribe" column="carDescribe"></result>
         <result property="carStatus" column="carStatus"></result>
         <association property="carImg"  javaType="edu.jluzh.test_layuimini.bean.CarImg">
-            <id property="licenseNumber" column="licenseNumber" ></id>
+            <id property="carImgId" column="carImgId" ></id>
             <result property="imgPath" column="imgPath"></result>
+            <result property="licenseNumber" column="licenseNumber"></result>
         </association>
     </resultMap>
 
@@ -39,14 +40,17 @@
         where
         carId = #{id}
     </select>
-    <select id="findCarByResultMap" resultMap="ICarMapper">
-        select c.*,carimg.imgPath from  Car c,carimg where c.licenseNumber = carimg.licenseNumber
+    <select id="findCarByResultMap" resultMap="ICarMapper" >
+        select c.*,carimg.imgPath,carimg.imgId,carimg.carId from Car c,carimg where c.licenseNumber = carimg.licenseNumber
     </select>
-    <select id="findLicense" resultType="java.lang.String">
-        select licenseNumber from car where carId=#{id}
+    <select id="findCarId" resultType="int">
+        select carId from car where licenseNumber = #{licenseNumber}
     </select>
     <select id="findCarByResultMapWithLicense" resultMap="ICarMapper" parameterType="string">
-           select c.*,carimg.imgPath from Car c,carimg where c.licenseNumber = carimg.licenseNumber and c.licenseNumber like '%${licenseNumber}%'
+           select c.*,carimg.imgPath,carimg.imgId,carimg.carId from Car c,carimg where c.licenseNumber = carimg.licenseNumber and c.licenseNumber like '%${licenseNumber}%'
+    </select>
+    <select id="findCarByResultMapWithLicenseWithId" resultMap="ICarMapper">
+           select c.*,carimg.imgPath,carimg.imgId,carimg.carId from Car c,carimg where c.licenseNumber = carimg.licenseNumber and c.carId = #{id}
     </select>
 
 

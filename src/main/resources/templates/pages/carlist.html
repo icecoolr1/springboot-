@@ -8,6 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" th:href="@{/lib/layui-v2.6.3/css/layui.css}" media="all">
     <link rel="stylesheet" th:href="@{/css/public.css}" media="all">
+    <style>
+        .layui-table-cell{
+            text-align:center;
+            height:auto;
+            white-space:normal;
+        }
+    </style>
 </head>
 <body>
 <div class="layuimini-container">
@@ -60,12 +67,12 @@
             cols: [
                 [
                     {type: 'checkbox', fixed: 'left'}
-                    , {field: 'carId', title: '汽车ID', width: 100, fixed: 'left', unresize: true, sort: true}
-                    , {field: 'imgPath', title: '图片', templet: '#img' ,width:100}
-                    , {field: 'licenseNumber', title: '车牌号', width: 120, edit: 'text'}
-                    , {field: 'carStatus', title: '车辆状态', width: 120, edit: 'text', templet: '#titleTpl'}
-                    , {field: 'carDescribe', title: '车辆描述', width: 200, edit: 'text'}
-                    , {fixed: 'right', title: '操作', toolbar: '#currentTableBar', width: 300}
+                    , {field: 'carId', title: '汽车ID', width: 100, fixed: 'left', unresize: true, sort: true ,style:"height:90px"}
+                    , {field: 'imgPath', title: '图片', templet: '#img' ,width:100,style:"height:90px"}
+                    , {field: 'licenseNumber', title: '车牌号', width: 120, edit: 'text',style:"height:90px"}
+                    , {field: 'carStatus', title: '车辆状态', width: 120, edit: 'text', templet: '#titleTpl',style:"height:90px"}
+                    , {field: 'carDescribe', title: '车辆描述', width: 200, edit: 'text',style:"height:90px"}
+                    , {fixed: 'right', title: '操作', toolbar: '#currentTableBar', width: 300,style:"height:90px"}
                 ]
             ],
             limits: [10, 15, 20, 25, 50, 100],
@@ -73,7 +80,7 @@
             page: true,
             skin: 'line',
             method:'post',
-            height:500,
+
 
         });
 
@@ -262,7 +269,7 @@
     }
 </script>
 <script type="text/html" id="img">
-    <div><img src="{{ d.carImg.imgPath }}" style="width: 30px; height: 30px" ></div>
+    <div><img src="{{ d.carImg.imgPath }}" style="width: 60px; height: 60px" ></div>
 </script>
 
 

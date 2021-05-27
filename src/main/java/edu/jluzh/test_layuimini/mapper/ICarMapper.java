@@ -32,8 +32,12 @@ public interface ICarMapper {
 
     List<Car> findCarByResultMap();
 
-    String findLicense(int id);
+    int findCarId(String license);
 
     List<Car> findCarByResultMapWithLicense(String license);
+
+    Car findCarByResultMapWithLicenseWithId(int id);
+
+
 
 }

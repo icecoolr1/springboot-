@@ -23,13 +23,13 @@ public class CarImgServiceImpl implements ICarImgService {
     }
 
     @Override
-    public void deleteImg(String licenseNumber) {
-        carImgMapper.deleteImg(licenseNumber);
+    public void deleteImg(int id) {
+        carImgMapper.deleteImg(id);
     }
 
     @Override
     public void updateImg(CarImg img) {
-
+        carImgMapper.updateImg(img);
     }
 
     @Override

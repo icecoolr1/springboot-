@@ -10,10 +10,7 @@ import edu.jluzh.test_layuimini.service.ICarImgService;
 import edu.jluzh.test_layuimini.service.ICarService;
 import edu.jluzh.test_layuimini.utils.LicensePlate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
@@ -42,6 +39,7 @@ public class CarController {
     UserResult result = new UserResult();
     UserTable table = new UserTable();
     FileUploadMessage fileUploadMessage = new FileUploadMessage();
+    CarImg img = new CarImg();
 
     //返回车辆信息
     @PostMapping("/getCarList")
@@ -69,8 +67,7 @@ public class CarController {
     public UserResult deleteCarlist(@RequestParam(value = "params[]") int[] params){
         for (int i : params) {
             //先删附表 再删除主表
-            String Li = carService.findLicense(i);
-            iCarImgService.deleteImg(Li);
+            iCarImgService.deleteImg(i);
             carService.deleteCarList(i);
         }
         result.setStatus("0");
@@ -84,6 +81,11 @@ public class CarController {
         Integer id = (Integer) session.getAttribute("carId");
         car.setCarId(id);
         carService.updateCar(car);
+        img.setLicenseNumber(car.getLicenseNumber());
+        img.setCarId(car.getCarId());
+        //找到imgid
+        //img.setCarImgId(newCar.getCarImg().getCarImgId());
+        iCarImgService.updateImg(img);
         result.setStatus("0");
         result.setMessage("Ok");
         return result;
@@ -99,9 +101,13 @@ public class CarController {
         System.out.println("车牌号"+number);
 
         carService.addCar(car);
+        int id = carService.findCarId(number);
+        System.out.println("carid值"+id);
+        img.setCarId(id);
         //分割字符串使前端能够访问
         String pathname =  path.substring(2);
         img.setImgPath(pathname);
+        System.out.println("img"+img);
         iCarImgService.addCarImg(img);
         result.setStatus("0");
         result.setMessage("Ok");

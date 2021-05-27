@@ -70,10 +70,12 @@ public class CarServiceImpl implements ICarService {
         return pageInfo;
     }
 
-    @Override
-    public String findLicense(int id) {
-     return  carMapper.findLicense(id);
-    }
+
+
+//    @Override
+//    public String findLicense(int id) {
+//     return  carMapper.findLicense(id);
+//    }
 
     @Override
     public PageInfo<Car> findAllCarWithImgByLicense(int page, int limit, String license) {
@@ -81,5 +83,17 @@ public class CarServiceImpl implements ICarService {
         List<Car> cars = carMapper.findCarByResultMapWithLicense(license);
         PageInfo<Car> pageInfo = new PageInfo<>(cars);
         return  pageInfo;
+    }
+
+    @Override
+    public Car findAllCarWithImgById(int id) {
+        return carMapper.findCarByResultMapWithLicenseWithId(id);
+
+    }
+
+    @Override
+    public int findCarId(String license) {
+
+       return carMapper.findCarId(license);
     }
 }

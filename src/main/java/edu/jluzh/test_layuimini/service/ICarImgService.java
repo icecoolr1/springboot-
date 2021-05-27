@@ -13,7 +13,7 @@ public interface ICarImgService {
     //添加图片方法
     void addCarImg(CarImg img);
     //先执行图片delete方法 再执行汽车delete方法
-    void deleteImg(String licenseNumber);
+    void deleteImg(int id);
     //更新汽车图片方法
     void updateImg(CarImg img);
     CarImg findCarImg(String licenseNumber);

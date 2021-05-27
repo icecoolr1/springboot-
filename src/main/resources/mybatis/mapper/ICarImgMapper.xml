@@ -4,11 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.jluzh.test_layuimini.mapper.ICarImgMapper">
     <insert id="addCarImg" parameterType="edu.jluzh.test_layuimini.bean.CarImg" useGeneratedKeys="true">
-      INSERT INTO carimg (licenseNumber, imgPath) VALUES (#{licenseNumber},#{imgPath})
+      INSERT INTO carimg (carId,licenseNumber, imgPath) VALUES (#{carId},#{licenseNumber},#{imgPath})
     </insert>
-    <update id="updateImg" parameterType="edu.jluzh.test_layuimini.bean.CarImg"/>
-    <delete id="deleteImg" parameterType="string">
-        delete from carimg where licenseNumber = #{licenseNumber}
+    <update id="updateImg" parameterType="edu.jluzh.test_layuimini.bean.CarImg">
+        update carimg set licenseNumber = #{licenseNumber} where carId = #{carId}
+    </update>
+    <delete id="deleteImg" parameterType="int">
+        delete from carimg where carId = #{id}
     </delete>
     <select id="findCarImg" resultType="edu.jluzh.test_layuimini.bean.CarImg">
 
