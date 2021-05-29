@@ -1,9 +1,11 @@
 package edu.jluzh.test_layuimini.controller;
 
 import edu.jluzh.test_layuimini.bean.Car;
+import edu.jluzh.test_layuimini.service.ICarImgService;
 import edu.jluzh.test_layuimini.service.ICarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpSession;
@@ -19,6 +21,8 @@ import javax.servlet.http.HttpSession;
 public class CarPageController {
     @Autowired
     ICarService carService;
+    @Autowired
+    ICarImgService carImgService;
     //转到列表页面
     @GetMapping("/carlist")
     public String toCarList(){
@@ -26,10 +30,11 @@ public class CarPageController {
     }
     //转到汽车编辑页面
     @GetMapping("/carEdit")
-    public String toCarEdit(HttpSession session,int id ){
+    public String toCarEdit(HttpSession session, int id, Model m1){
         session.setAttribute("carId",id);
         Car car = carService.findCarById(id);
         session.setAttribute("Car",car);
+        m1.addAttribute("carimg",carImgService.findCarImgById(id));
         return "pages/carEdit";
     }
     //转到用户添加页面

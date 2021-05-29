@@ -33,7 +33,9 @@ public class CarImgServiceImpl implements ICarImgService {
     }
 
     @Override
-    public CarImg findCarImg(String licenseNumber) {
-        return null;
+    public String findCarImgById(int carId) {
+        return carImgMapper.findCarImgById(carId);
     }
+
+
 }

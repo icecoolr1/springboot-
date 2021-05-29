@@ -18,5 +18,7 @@ public interface ICarImgMapper {
     void deleteImg(int id);
     //更新汽车图片方法
     void updateImg(CarImg img);
-    CarImg findCarImg(String licenseNumber);
+    //通过车牌号查找图片信息
+    String findCarImgById(int carId);
+
 }

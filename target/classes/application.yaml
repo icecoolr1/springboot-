@@ -7,6 +7,11 @@ spring:
   #   type: com.zaxxer.hikari.HikariDataSource
     druid:
       filters: stat,wall
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
       stat-view-servlet:
         enabled: true
         login-username: admin

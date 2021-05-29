@@ -26,18 +26,14 @@ public interface ICarMapper {
     public void updareCar(Car car);
     //添加车辆
     public void addCar(Car car);
-
     //通过id查询车辆
     public Car findCarById(int id);
-
+    //多表查询车辆信息
     List<Car> findCarByResultMap();
-
+    //通过车牌号查询carID
     int findCarId(String license);
-
+    //通过车牌号多表查询车辆信息
     List<Car> findCarByResultMapWithLicense(String license);
-
+    //通过carId多表查询车辆信息
     Car findCarByResultMapWithLicenseWithId(int id);
-
-
-
 }

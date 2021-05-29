@@ -15,15 +15,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.security.PublicKey;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @description:
+ * @description:    要我说，这个模块的代码烂爆了，因为我改了一次数据库，导致有些方法再也没有用过，所幸的是它跑起来了，
+ * 以后有时间(bushi)尽量优化一下
  * @author: icecool
  * @date: Created in 2021/5/22 19:24
  * @version:
@@ -80,9 +79,13 @@ public class CarController {
     public UserResult updateCar(HttpSession session,Car car){
         Integer id = (Integer) session.getAttribute("carId");
         car.setCarId(id);
+
         carService.updateCar(car);
         img.setLicenseNumber(car.getLicenseNumber());
         img.setCarId(car.getCarId());
+        String path = (String)session.getAttribute("path");
+        String pathname =  path.substring(2);
+        img.setImgPath(pathname);
         //找到imgid
         //img.setCarImgId(newCar.getCarImg().getCarImgId());
         iCarImgService.updateImg(img);
@@ -131,6 +134,7 @@ public class CarController {
         //在session中保存文件存放路径
         session.setAttribute("path",pathString);
         //分割路径
+        assert pathString != null;
         String path = pathString.substring(2);
         System.out.println(pathString);
         fileUploadMessage.setData(pathString);
@@ -140,4 +144,6 @@ public class CarController {
         fileUploadMessage.setFiles(src);
         return fileUploadMessage;
     }
+
+
 }

@@ -7,12 +7,13 @@
       INSERT INTO carimg (carId,licenseNumber, imgPath) VALUES (#{carId},#{licenseNumber},#{imgPath})
     </insert>
     <update id="updateImg" parameterType="edu.jluzh.test_layuimini.bean.CarImg">
-        update carimg set licenseNumber = #{licenseNumber} where carId = #{carId}
+        update carimg set licenseNumber = #{licenseNumber},imgPath=#{imgPath} where carId = #{carId}
     </update>
     <delete id="deleteImg" parameterType="int">
         delete from carimg where carId = #{id}
     </delete>
-    <select id="findCarImg" resultType="edu.jluzh.test_layuimini.bean.CarImg">
 
+    <select id="findCarImgById" resultType="java.lang.String">
+        select imgPath from carimg where carId = #{carId}
     </select>
 </mapper>

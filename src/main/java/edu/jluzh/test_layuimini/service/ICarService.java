@@ -22,4 +22,5 @@ public interface ICarService {
     PageInfo<Car> findAllCarWithImgByLicense(int page,int limit,String license);
     Car findAllCarWithImgById(int id);
     int findCarId(String license);
+
 }

@@ -14,8 +14,8 @@ import java.io.Serializable;
  */
 @Data
 public class CarImg implements Serializable {
-    private Integer imgId;
-    private Integer carId;
-    private String licenseNumber;
-    private String imgPath;
+    private Integer imgId;//图片id
+    private Integer carId;//汽车id
+    private String licenseNumber;//车牌号
+    private String imgPath;//图片路径
 }

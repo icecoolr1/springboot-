@@ -1,0 +1,40 @@
+<!DOCTYPE>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>人脸登陆系统</title>
+    <meta charset="utf-8">
+    <script th:src="@{/lib/jquery-3.4.1/jquery-3.4.1.min.js}"></script>
+    <link rel="stylesheet" href="/lib/layui-v2.6.3/css/layui.css" media="all">
+    <style type="text/css">
+        #canvas, #video {
+            position: absolute;
+            left: 450px;
+            top: 100px;
+        }
+        #input {
+            position: absolute;
+            left: 400px;
+            top: 650px;
+        }
+
+        #snap {
+            position: absolute;
+            left: 950px;
+            top: 650px;
+        }
+
+        body {
+            background-image: url(tupian/bg.jpg);
+        }
+    </style>
+</head>
+<body>
+
+    <button id="input"  onclick="getMedia()" class="layui-btn  layui-btn-primary layui-icon layui-icon-camera-fill" style="font-size:30px;color: #0c0f13"></button>
+
+    <video id="video" width="500px" height="500px" autoplay="autoplay"></video>
+	<canvas id="canvas" width="500px" height="500px"></canvas>
+    <button id="snap"  onclick="takePhoto()" class="layui-btn layui-btn-primary layui-icon layui-icon-ok-circle" style="font-size:30px;color: #0c0f13"></button>
+</body>
+	<script th:src="@{/assets/js/login.js}"></script>
+</html>

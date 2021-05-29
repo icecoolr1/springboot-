@@ -51,13 +51,17 @@ public class HelloController {
 
     //直接跳转到主页并过滤未登录请求
     @GetMapping("/index.html")
-    public String toIndex(HttpSession session,Model model){
-        Object user = session.getAttribute("user");
-        if(user != null){
-            return "index";
+    public String toIndex(HttpSession session,Model model,String userId){
+        if(userId == null) {
+            Object user = session.getAttribute("user");
+            if (user != null) {
+                return "index";
+            } else {
+                model.addAttribute("msg", "请登录!");
+                return "login-3";
+            }
         }else {
-            model.addAttribute("msg","请登录!");
-            return  "login-3";
+            return "index";
         }
 
     }
@@ -79,4 +83,10 @@ public class HelloController {
         int [] data = orderService.findOrderByMonths();
         return data;
     }
+
+    @GetMapping(value = "/face")
+    public String toFace(){
+        return "facelogin";
+    }
+
 }

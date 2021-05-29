@@ -16,6 +16,7 @@ public interface ICarImgService {
     void deleteImg(int id);
     //更新汽车图片方法
     void updateImg(CarImg img);
-    CarImg findCarImg(String licenseNumber);
+    String findCarImgById(int carId);
+
 
 }

@@ -27,6 +27,7 @@ public class OrderPageController {
     @GetMapping("orderEdit")
     public String toOrderEdit(int id, HttpSession session){
         session.setAttribute("orderId",id);
+        //数据回显
         session.setAttribute("Order",orderService.findOrderByOrderID(id));
         return "pages/orderEdit";
     }

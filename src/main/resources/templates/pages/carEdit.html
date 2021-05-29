@@ -21,7 +21,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">车牌号</label>
         <div class="layui-input-block">
-            <input type="text" name="licenseNumber" lay-verify="required" lay-reqtext="车牌号不能为空" placeholder="请输入车牌号" th:value="${session.Car.getLicenseNumber()}" class="layui-input">
+            <input type="text" name="licenseNumber" id="licenseNumber" lay-verify="required" lay-reqtext="车牌号不能为空" placeholder="请输入车牌号" th:value="${session.Car.getLicenseNumber()}" class="layui-input">
         </div>
     </div>
 
@@ -40,20 +40,49 @@
             <tip>输入车辆品牌，型号</tip>
         </div>
     </div>
-
+    <div class="layui-form-item">
+        <label class="layui-form-label">图片上传:</label>
+        <div class="layui-input-block">
+            <div class="layui-upload-drag" id="test10">
+                <i class="layui-icon"></i>
+                <p>点击上传，或将文件拖拽到此处</p>
+                <div class="layui-hide" id="uploadDemoView">
+                    <hr>
+                    <img id="img" src="" alt="上传成功后渲染" style="max-width: 196px">
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
         </div>
     </div>
+
+
 </div>
 </div>
+
+
+
 <script th:src="@{/lib/layui-v2.6.3/layui.js}" charset="utf-8"></script>
 <script>
-    layui.use(['form'], function () {
+  layui.use(['jquery'],function () {
+      var $ = layui.$;
+      let img = "[(${carimg})]";
+           $(function () {
+          layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src',img);
+      })
+
+  })
+</script>
+
+<script>
+    layui.use(['form','upload','jquery'], function () {
         var form = layui.form,
             layer = layui.layer,
+            upload = layui.upload,
             $ = layui.$;
 
         //监听提交
@@ -79,7 +108,34 @@
                 }
             })
         });
+
+
+        upload.render({
+            elem: '#test10'
+            ,url: '/car/BaiDuApi' //改成您自己的上传接口
+            ,accept: 'images'
+            ,acceptMime:'image/*'
+            ,size: '20480'
+            ,method: 'post'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+
+            }
+
+            ,done: function(res){
+                layer.msg('上传成功');
+                layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.data.file);
+                console.log(res.data);
+                console.log(res.number);
+                $("#licenseNumber").val(res.msg);
+
+
+            }
+        });
+
     });
 </script>
+
+
 </body>
 </html>
