@@ -28,8 +28,8 @@ import java.util.*;
 @Controller
 @RequestMapping("userHello")
 public class UserHellloController {
-   UserResult result = new UserResult();
-   FaceResult faceResult = new FaceResult();
+    UserResult result = new UserResult();
+    FaceResult faceResult = new FaceResult();
     @RequestMapping("findFace")
     @ResponseBody
     public UserResult userFaceSearch(@RequestBody Base64Req base64Req) throws IOException {

@@ -1,6 +1,9 @@
 package edu.jluzh.test_layuimini.pojo;
 
 import lombok.Data;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 /**
  * @description:

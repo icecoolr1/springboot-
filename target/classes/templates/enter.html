@@ -24,7 +24,7 @@
         }
 
         body {
-            background-image: url(tupian/bg.jpg);
+            background: url(images/pic04.jpg) 0% 0% ;
         }
     </style>
 </head>
@@ -34,14 +34,13 @@
 
 <video id="video" width="500px" height="500px" autoplay="autoplay"></video>
 <canvas id="canvas" width="500px" height="500px"></canvas>
-<button id="snap"  onclick="takePhoto()" class="layui-btn layui-btn-primary layui-icon layui-icon-ok-circle" style="font-size:30px;color: #0c0f13"></button>
+<button id="snap"  onclick="takePhoto()" data-method="setTop" class="layui-btn layui-btn-primary layui-icon layui-icon-ok-circle" style="font-size:30px;color: #0c0f13"></button>
 </body>
+<script th:src="@{/lib/layui-v2.6.3/layui.js}" charset="utf-8"></script>
+<script src="js/lay-config.js?v=2.0.0" charset="utf-8"></script>
 <script type="text/javascript">
     //获得video摄像头区域
     let video = document.getElementById("video");
-
-        var layer = layui.layer;
-
         function getMedia() {
             let constraints = {
                 video: {
@@ -67,7 +66,9 @@
         }
 
         function takePhoto() {
+            layer.msg("提交中", {icon: 16,time:1000});
             //获得Canvas对象
+
             let canvas = document.getElementById("canvas");
             let ctx = canvas.getContext('2d');
             ctx.drawImage(video, 0, 0, 500, 500);
@@ -91,10 +92,10 @@
 
                 success: function (data) {
                     if (data.finalScore > 90) {
-                        alert("活体检验成功！");
                         window.location.href="index.html?userId="+data.message;
                     } else {
-                        alert("活体检验失败！,请检查您的摄像头");
+                       alert("活体检验失败！,请检查您的摄像头");
+                       location.reload();
                     }
                 },
             });
