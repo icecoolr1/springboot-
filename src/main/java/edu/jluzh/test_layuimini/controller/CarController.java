@@ -80,15 +80,23 @@ public class CarController {
         Integer id = (Integer) session.getAttribute("carId");
         car.setCarId(id);
 
-        carService.updateCar(car);
-        img.setLicenseNumber(car.getLicenseNumber());
-        img.setCarId(car.getCarId());
+
         String path = (String)session.getAttribute("path");
-        String pathname =  path.substring(2);
-        img.setImgPath(pathname);
-        //找到imgid
-        //img.setCarImgId(newCar.getCarImg().getCarImgId());
-        iCarImgService.updateImg(img);
+
+        //没有添加图片
+        if(path==null){
+            carService.updateCar(car);
+        }else {
+            img.setLicenseNumber(car.getLicenseNumber());
+            img.setCarId(car.getCarId());
+            String pathname =  path.substring(2);
+            img.setImgPath(pathname);
+            //找到imgid
+            //img.setCarImgId(newCar.getCarImg().getCarImgId());
+            iCarImgService.updateImg(img);
+            carService.updateCar(car);
+        }
+
         result.setStatus("0");
         result.setMessage("Ok");
         return result;
@@ -143,6 +151,17 @@ public class CarController {
         fileUploadMessage.setData(src);
         fileUploadMessage.setFiles(src);
         return fileUploadMessage;
+    }
+
+    @PostMapping("/getCarListForUse")
+    public UserTable getCarListForUse(int page, int limit){
+        PageInfo<Car> pageInfo = carService.findCarsForUse(page, limit);
+        table.setCode(0);
+        table.setMsg("ok");
+        table.setCount(pageInfo.getTotal());
+        table.setData(pageInfo.getList());
+        System.out.println("文件是"+pageInfo.getList());
+        return table;
     }
 
 

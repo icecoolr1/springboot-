@@ -61,7 +61,6 @@ public class UserHellloController {
             String score = list.get(0);
             String[] end = score.split(",");
             System.out.println("测试字符串" + score);
-
             String truescore = end[0].substring(9);
             String userid = end[2].substring(10).replace("\"", "");
             System.out.println(userid);

@@ -7,6 +7,9 @@
         update orderlist set userId = #{userId} ,orderStatus = #{orderStatus},beginDate = #{beginDate},closeDate=#{closeDate}
         ,licenseNumber = #{licenseNumber} where orderId=#{orderId}
     </update>
+    <update id="backCar">
+        update orderlist set orderStatus = '正常',closeDate= now() where orderId = #{id}
+    </update>
     <delete id="deleteOrder" parameterType="int">
         delete from orderlist where orderId=#{orderId}
     </delete>
@@ -30,4 +33,12 @@
     <select id="findOrderByOrderId" resultType="edu.jluzh.test_layuimini.bean.OrderList">
          select * from orderlist where orderId = #{orderId}
     </select>
+    <select id="findDoingOrderList" resultType="edu.jluzh.test_layuimini.bean.OrderList">
+          select * from orderlist where userId = #{id} and orderStatus='订单进行中'
+    </select>
+
+
+    <insert id="BorrowCar" parameterType="edu.jluzh.test_layuimini.bean.OrderList">
+        insert into orderlist(userId,licenseNumber,orderStatus,beginDate) values(#{userId},#{licenseNumber},#{orderStatus},#{beginDate})
+    </insert>
 </mapper>

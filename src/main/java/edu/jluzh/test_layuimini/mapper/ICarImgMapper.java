@@ -1,7 +1,10 @@
 package edu.jluzh.test_layuimini.mapper;
 
+import edu.jluzh.test_layuimini.bean.Car;
 import edu.jluzh.test_layuimini.bean.CarImg;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * @description:
@@ -20,5 +23,6 @@ public interface ICarImgMapper {
     void updateImg(CarImg img);
     //通过车牌号查找图片信息
     String findCarImgById(int carId);
+
 
 }

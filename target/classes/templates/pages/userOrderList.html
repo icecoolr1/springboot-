@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/lib/layui-v2.6.3/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/css/public.css}" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+
+
+        <table class="layui-hide" id="currentTableFilter" lay-filter="currentTableFilter"></table>
+        <script type="text/html" id="currentTableBar">
+            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">我要还车</a>
+
+        </script>
+    </div>
+</div>
+<script th:src="@{/lib/layui-v2.6.3/layui.js}" charset="utf-8"></script>
+<script th:src="@{/js/lay-module/layuitable/DataTableExtend.js}"></script>
+<script>
+    layui.use(['form', 'table','jquery'], function () {
+
+        var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table;
+
+        table.render({
+            elem: '#currentTableFilter',
+            url: '/order/bOrder',
+            toolbar: '#toolbarDemo',
+            defaultToolbar: ['filter', 'exports', 'print', {
+                title: '提示',
+                layEvent: 'LAYTABLE_TIPS',
+                icon: 'layui-icon-tips'
+            }],
+            cols: [
+                [
+                    {type: 'checkbox', fixed: 'left'}
+                    , {field: 'orderId', title: '订单ID', width: 100, fixed: 'left', unresize: true, sort: true}
+                    , {field: 'userId', title: '用户ID', width: 120, edit: 'text'}
+                    , {field: 'licenseNumber', title: '车牌号', width: 150, edit: 'text' }
+                    , {field: 'orderStatus', title: '订单的状态', width: 150, edit: 'text',templet: '#titleTpl'}
+                    , {field: 'beginDate', title: '订单开始日期', width: 150, edit: 'text'}
+                    , {field: 'closeDate', title: '订单关闭日期', width: 150, edit: 'text'}
+                    , {fixed: 'right', title: '操作', toolbar: '#currentTableBar', width: 300}
+                ]
+            ],
+            limits: [10, 15, 20, 25, 50, 100],
+            limit: 10,
+            page: true,
+            skin: 'line',
+            method:'post'
+
+        });
+        //
+        // // 监听搜索操作
+        // var $ = layui.$, active = {
+        //     reload: function(){
+        //         var demoReload = $('#demoReload');
+        //         //执行重载
+        //         table.reload('currentTableFilter', {
+        //             page: {
+        //                 curr: 1 //重新从第 1 页开始
+        //             }
+        //             ,where: {
+        //                 userId: demoReload.val()
+        //             }
+        //         });
+        //     }
+        // };
+
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+        /**
+         * toolbar监听事件
+         */
+        // table.on('toolbar(currentTableFilter)', function (obj) {
+        //     var checkStatus = table.checkStatus("currentTableFilter");
+        //     switch(obj.event) {
+        //         case 'delete':
+        //             var data = checkStatus.data;
+        //             //根据id删除数据
+        //             if (data.length > 0) {
+        //                 layer.confirm('确定删除吗?', function (index) {
+        //                     var params = [];
+        //                     for(var i=0; i<checkStatus.data.length; i++){
+        //                         params[i] = data[i].orderId;
+        //                     }
+        //                     $.ajax({
+        //                         url:'/userHandler/cOrderStatus',
+        //                         data:{params:params},
+        //                         method: 'post',
+        //                         dataType:'json',
+        //                         success:function (result) {
+        //                             if (result.status) {
+        //                                 parent.window.location.reload();
+        //                             } else {
+        //                                 alert(result.message);
+        //                             }
+        //                             layer.close(index);
+        //                         }
+        //                     })
+        //                 });
+        //             }
+        //             break;
+        //     }
+        // });
+
+        //监听表格复选框选择
+        table.on('checkbox(currentTableFilter)', function (obj) {
+            console.log(obj)
+        });
+        table.on('tool(currentTableFilter)', function (obj) {
+
+            var checkStatus = table.checkStatus("currentTableFilter");
+            var data = checkStatus.data;
+            //console.log(obj)
+            if(obj.event === 'edit'){
+                if(checkStatus.data.length !== 1){
+                    alert("请选择一行数据")
+                }else{
+                        var params = data[0].orderId;
+                        var params2 = data[0].licenseNumber;
+                        console.log(params);
+                        $.ajax({
+                            url:'/order/back',
+                            data:{
+                                "params":params,
+                                "params2":params2
+                            },
+                            method: 'post',
+                            dataType:'json',
+                            success:function(result) {
+                                if (result.status) {
+                                    table.reload('currentTableFilter');
+                                }
+                            }
+                        })
+
+                }
+            }
+        });
+    });
+</script>
+<script type="text/html" id="titleTpl">
+    <!--设置用户字体样式-->
+    {{#  if(d.orderStatus == '正常'){ }}
+    <span style="color: #03f5ff;">{{ d.orderStatus }}</span>
+    {{#  } else { }}
+    <span style="color: #ff4a3d;">{{ d.orderStatus }}</span>
+    {{#  } }}
+</script>
+
+<script type="text/javascript">
+    function back() {
+        //返回到完整用户列表
+        window.location = "/orderlist";
+    }
+</script>
+
+</body>
+</html>

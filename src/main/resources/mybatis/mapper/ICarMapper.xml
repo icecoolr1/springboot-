@@ -21,6 +21,12 @@
     <update id="updareCar" parameterType="car">
         update car set licenseNumber=#{licenseNumber},carStatus=#{carStatus},carDescribe=#{carDescribe} where carId=#{carId}
     </update>
+    <update id="updateBorrow">
+        update car set carStatus = '订单进行中' where carId = #{carId}
+    </update>
+    <update id="updateBack">
+        update car set carStatus = '正常' where licenseNumber=#{licenseNumber}
+    </update>
     <delete id="deleteCarList" >
         delete from car where carId=#{carId}
     </delete>
@@ -51,6 +57,9 @@
     </select>
     <select id="findCarByResultMapWithLicenseWithId" resultMap="ICarMapper">
            select c.*,carimg.imgPath,carimg.imgId,carimg.carId from Car c,carimg where c.licenseNumber = carimg.licenseNumber and c.carId = #{id}
+    </select>
+    <select id="findCarForUser" resultMap="ICarMapper">
+        select c.*,carimg.imgPath,carimg.imgId,carimg.carId from Car c,carimg where c.licenseNumber = carimg.licenseNumber and c.carStatus = '正常'
     </select>
 
 

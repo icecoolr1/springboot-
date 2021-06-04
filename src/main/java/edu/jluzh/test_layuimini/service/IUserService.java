@@ -1,5 +1,6 @@
 package edu.jluzh.test_layuimini.service;
 
+import com.alibaba.druid.pool.ha.selector.StickyRandomDataSourceSelector;
 import com.github.pagehelper.PageInfo;
 import edu.jluzh.test_layuimini.bean.User;
 
@@ -24,5 +25,12 @@ public interface IUserService {
      int findUserTotal();
      //按id查询用户
      User findUserByid(int id);
+     //用户注册
+     public void addUser(User user);
+     //判断用户是否存在，返回用户id
+     public int isUserExist(String username, String password);
+     void userBorrow(int userId);
+     void userBack(int userId);
+
 
 }

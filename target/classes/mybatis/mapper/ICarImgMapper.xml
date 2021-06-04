@@ -16,4 +16,5 @@
     <select id="findCarImgById" resultType="java.lang.String">
         select imgPath from carimg where carId = #{carId}
     </select>
+
 </mapper>

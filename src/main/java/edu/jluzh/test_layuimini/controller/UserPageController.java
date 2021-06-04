@@ -43,13 +43,16 @@ public class UserPageController {
     public String userEdit(Integer id, HttpSession session){
         session.setAttribute("userId",id);
         session.setAttribute("User",service.findUserByid(id));
-
         System.out.println(id);
         return "pages/edit";
     }
+
 
     @GetMapping("enter")
     public String toEnter(){
         return "enter";
     }
+
+
+
 }

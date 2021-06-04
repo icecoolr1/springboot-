@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class OrderList implements Serializable {
     private Integer orderId;//订单id
-    private String userId;//用户id
+    private Integer userId;//用户id
     private String licenseNumber;//车牌号
     private String orderStatus;//订单状态
     //定义日期数据格式
@@ -29,7 +29,7 @@ public class OrderList implements Serializable {
     public OrderList() {
     }
 
-    public OrderList(Integer orderId, String userId, String licenseNumber, String orderStatus, Date beginDate, Date closeDate) {
+    public OrderList(Integer orderId, Integer userId, String licenseNumber, String orderStatus, Date beginDate, Date closeDate) {
         this.orderId = orderId;
         this.userId = userId;
         this.licenseNumber = licenseNumber;
@@ -46,11 +46,11 @@ public class OrderList implements Serializable {
         this.orderId = orderId;
     }
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

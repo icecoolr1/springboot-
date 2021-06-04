@@ -1,7 +1,12 @@
 package edu.jluzh.test_layuimini.service;
 
 import com.github.pagehelper.PageInfo;
+import edu.jluzh.test_layuimini.bean.Car;
 import edu.jluzh.test_layuimini.bean.OrderList;
+import org.apache.ibatis.annotations.Param;
+
+import javax.xml.crypto.Data;
+import java.util.Date;
 
 /**
  * @description:
@@ -26,4 +31,11 @@ public interface IOrderService {
     void uodateOrderList(OrderList order);
 
     OrderList findOrderByOrderID(int id);
+    PageInfo<OrderList> findDoingOrderList(int page,int limit,int userId);
+
+
+
+    void borrowCar(OrderList orderList);
+    void backCar( int orderId);
+
 }

@@ -55,7 +55,7 @@ class TestLayuiminiApplicationTests {
 
     @Test
     public void testImg(){
-        System.out.println(carMapper.findCarByResultMap());
+        System.out.println(carMapper.findCarForUser());
     }
 
 

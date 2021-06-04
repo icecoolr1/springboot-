@@ -36,4 +36,10 @@ public interface ICarMapper {
     List<Car> findCarByResultMapWithLicense(String license);
     //通过carId多表查询车辆信息
     Car findCarByResultMapWithLicenseWithId(int id);
+    List<Car> findCarForUser();
+
+    void updateBorrow(int carId);
+
+    void updateBack(String number);
+
 }

@@ -8,6 +8,7 @@ import edu.jluzh.test_layuimini.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -69,5 +70,25 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public OrderList findOrderByOrderID(int id) {
         return  orderMapper.findOrderByOrderId(id);
+    }
+
+    @Override
+    public PageInfo<OrderList> findDoingOrderList(int page,int limit,int userId) {
+        PageHelper.startPage(page,limit);
+        List<OrderList> lists = orderMapper.findDoingOrderList(userId);
+        PageInfo<OrderList> pageInfo = new PageInfo<>(lists);
+        return  pageInfo;
+
+    }
+
+    @Override
+    public void borrowCar(OrderList orderList) {
+        orderMapper.BorrowCar(orderList);
+    }
+
+    @Override
+    public void backCar(int orderId) {
+
+        orderMapper.backCar(orderId);
     }
 }

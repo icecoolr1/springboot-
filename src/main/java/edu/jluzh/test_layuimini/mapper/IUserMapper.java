@@ -2,6 +2,7 @@ package edu.jluzh.test_layuimini.mapper;
 
 import edu.jluzh.test_layuimini.bean.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 
 import java.util.List;
@@ -27,4 +28,8 @@ public interface IUserMapper {
     int findUserTotal();
     //按id查询用户
     User findUserByid(int id);
+    public void addUser(User user);
+    public User validateUser(@Param("username") String username,@Param("password") String password);
+    void userBorrow(int userId);
+    void userBack(int userId);
 }
