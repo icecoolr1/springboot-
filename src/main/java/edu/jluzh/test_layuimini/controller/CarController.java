@@ -111,18 +111,23 @@ public class CarController {
         img.setLicenseNumber(number);
         System.out.println("车牌号"+number);
 
-        carService.addCar(car);
-        int id = carService.findCarId(number);
-        System.out.println("carid值"+id);
-        img.setCarId(id);
-        //分割字符串使前端能够访问
-        String pathname =  path.substring(2);
-        img.setImgPath(pathname);
-        System.out.println("img"+img);
-        iCarImgService.addCarImg(img);
-        result.setStatus("0");
-        result.setMessage("Ok");
+        if(carService.findCarByLi(number)==null){
+            carService.addCar(car);
+            int id = carService.findCarId(number);
 
+            System.out.println("carid值"+id);
+            img.setCarId(id);
+            //分割字符串使前端能够访问
+            String pathname =  path.substring(2);
+            img.setImgPath(pathname);
+            System.out.println("img"+img);
+            iCarImgService.addCarImg(img);
+            result.setStatus("0");
+            result.setMessage("Ok");
+        }else {
+            result.setMessage("车牌号重复!");
+            result.setStatus("1");
+        }
         return result;
     }
 
@@ -130,7 +135,6 @@ public class CarController {
     public FileUploadMessage RecNumber(@RequestParam("file") MultipartFile file,HttpSession session) throws Exception {
         fileUploadMessage.setCode(0);
         Map<String,String> src = new HashMap<>();
-
         String pathString = null;
         if(!file.isEmpty()){
             //设置文件路径

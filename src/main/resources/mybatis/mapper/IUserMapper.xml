@@ -28,10 +28,10 @@
         update user set userName=#{userName},userAge=#{userAge},userMail=#{userMail},userSex=#{userSex},userStatus=#{userStatus},userPhone=#{userPhone} where userId=#{userId}
     </update>
     <update id="userBorrow">
-        update user set userStatus = '订单进行中'
+        update user set userStatus = '订单进行中' where userId=#{userId}
     </update>
     <update id="userBack">
-           update user set userStatus = '正常'
+           update user set userStatus = '正常' where userId=#{userId}
     </update>
 
     <select id="findUserByid" resultType="edu.jluzh.test_layuimini.bean.User">

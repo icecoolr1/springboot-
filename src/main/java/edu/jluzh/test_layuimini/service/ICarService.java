@@ -25,5 +25,7 @@ public interface ICarService {
     PageInfo<Car> findCarsForUse(int page,int limit);
     void updateBorrow(int carid);
     void updateBack(String number);
+    Car findCarByLi(String license);
+
 
 }

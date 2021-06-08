@@ -1,4 +1,4 @@
-# 基于Springboot的可计算机视觉的共享汽车平台
+# 基于计算机视觉的Springboot共享汽车平台
 
 ## 技术选型
 - 模板引擎: thymealeaf

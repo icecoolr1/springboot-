@@ -93,7 +93,6 @@ public class CarServiceImpl implements ICarService {
 
     @Override
     public int findCarId(String license) {
-
        return carMapper.findCarId(license);
     }
 
@@ -112,5 +111,11 @@ public class CarServiceImpl implements ICarService {
     @Override
     public void updateBack(String number) {
         carMapper.updateBack(number);
+    }
+
+    @Override
+    public Car findCarByLi(String license) {
+        return carMapper.findCarByLi(license);
+
     }
 }

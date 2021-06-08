@@ -42,4 +42,6 @@ public interface ICarMapper {
 
     void updateBack(String number);
 
+    Car findCarByLi(String license);
+
 }

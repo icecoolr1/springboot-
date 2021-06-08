@@ -61,6 +61,9 @@
     <select id="findCarForUser" resultMap="ICarMapper">
         select c.*,carimg.imgPath,carimg.imgId,carimg.carId from Car c,carimg where c.licenseNumber = carimg.licenseNumber and c.carStatus = '正常'
     </select>
+    <select id="findCarByLi" resultType="edu.jluzh.test_layuimini.bean.Car">
+        select * from car where licenseNumber = #{license}
+    </select>
 
 
 </mapper>
